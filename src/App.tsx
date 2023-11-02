@@ -3,6 +3,11 @@ import { useCallback } from "react";
 
 const store = createStore<{ count: number, text: string }>({ count: 0, text: 'hello' });
 
+store.subscribe(() => {
+  const currentCount = store.getState().count;
+  console.log(currentCount);
+});
+
 const Counter = () => {
   const count = useStore(store, useCallback((state) => state.count, []));
   const inc = () => {
