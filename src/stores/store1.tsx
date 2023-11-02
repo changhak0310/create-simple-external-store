@@ -11,6 +11,13 @@ store.subscribe(() => {
   console.log(currentCount);
 });
 
+const GetCount: () => number = () => {
+    return useStore(
+      store,
+      useCallback((state) => state.count, [])
+    );
+  };
+
 const Counter = () => {
   const count = useStore(
     store,
@@ -41,4 +48,4 @@ const TextBox = () => {
   );
 };
 
-export { Counter, TextBox}
+export { GetCount, Counter, TextBox };
