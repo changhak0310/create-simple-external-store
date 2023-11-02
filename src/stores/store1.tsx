@@ -17,35 +17,50 @@ const GetCount: () => number = () => {
       useCallback((state) => state.count, [])
     );
   };
+const GetText: () => string = () => {
+    return useStore(
+      store,
+      useCallback((state) => state.text, [])
+    );
+  };
 
-const Counter = () => {
-  const count = useStore(
-    store,
-    useCallback((state) => state.count, [])
-  );
-  const inc = () => {
+const CountPlus = () => {
     store.setState((prev) => ({ ...prev, count: prev.count + 1 }));
-  };
-  return (
-    <div>
-      {count} <button onClick={inc}>+1</button>
-    </div>
-  );
+}
+
+// const Counter = () => {
+//     const count = useStore(
+//       store,
+//       useCallback((state) => state.count, [])
+//     );
+//     const inc = () => {
+//       store.setState((prev) => ({ ...prev, count: prev.count + 1 }));
+//     };
+//     return (
+//       <div>
+//         {count} <button onClick={inc}>+1</button>
+//       </div>
+//     );
+//   };
+
+const ChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
+  store.setState((prev) => ({ ...prev, text: event.target.value }));
 };
 
-const TextBox = () => {
-  const text = useStore(
-    store,
-    useCallback((state) => state.text, [])
-  );
-  const setText = (event: React.ChangeEvent<HTMLInputElement>) => {
-    store.setState((prev) => ({ ...prev, text: event.target.value }));
-  };
-  return (
-    <div>
-      <input value={text} onChange={setText} className="full-width" />
-    </div>
-  );
-};
+// const TextBox = () => {
+//     const text = useStore(
+//       store,
+//       useCallback((state) => state.text, [])
+//     );
+//     const setText = (event: React.ChangeEvent<HTMLInputElement>) => {
+//       store.setState((prev) => ({ ...prev, text: event.target.value }));
+//     };
+//     return (
+//       <div>
+//         <input value={text} onChange={setText} className="full-width" />
+//       </div>
+//     );
+//   };
+  
 
-export { GetCount, Counter, TextBox };
+export { GetCount, GetText, CountPlus, ChangeText };
