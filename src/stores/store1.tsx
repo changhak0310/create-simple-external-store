@@ -10,26 +10,23 @@ store.subscribe(() => {
   const currentCount = store.getState().count;
   console.log(currentCount);
 });
-
-const GetCount: () => number = () => {
+export default class Store {
+  getCount: () => number = () => {
     return useStore(
       store,
       useCallback((state) => state.count, [])
     );
   };
-const GetText: () => string = () => {
+  getText: () => string = () => {
     return useStore(
       store,
       useCallback((state) => state.text, [])
     );
   };
-
-const CountPlus = () => {
+  countPlus = () => {
     store.setState((prev) => ({ ...prev, count: prev.count + 1 }));
+  };
+  changeText = (event: React.ChangeEvent<HTMLInputElement>) => {
+    store.setState((prev) => ({ ...prev, text: event.target.value }));
+  };
 }
-
-const ChangeText = (event: React.ChangeEvent<HTMLInputElement>) => {
-  store.setState((prev) => ({ ...prev, text: event.target.value }));
-};
-  
-export { GetCount, GetText, CountPlus, ChangeText };

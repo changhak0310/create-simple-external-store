@@ -1,8 +1,9 @@
 import { useCallback } from "react";
 import { createStore, useStore } from "./store";
-import { GetCount } from "./store1";
+import Store from "./store1";
 
 const storeNumber = createStore<number>(0);
+const store = new Store();
 
 storeNumber.subscribe(() => {
   const currentCount = storeNumber.getState();
@@ -18,7 +19,7 @@ const Counter2 = () => {
   const inc = () => {
     storeNumber.setState((prev) => prev + 1);
   };
-  const otherCount = GetCount();
+  const otherCount = store.getCount();
   return (
     <div>
       {count + otherCount} <button onClick={inc}>+1</button>

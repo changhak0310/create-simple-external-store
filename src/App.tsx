@@ -1,20 +1,22 @@
-import { GetCount, GetText, CountPlus, ChangeText } from "./stores/store1";
+import Store from "./stores/store1";
 import { Counter2 } from "./stores/store2";
 
+const store = new Store();
+
 const Counter = () => {
-  const count = GetCount();
+  const count = store.getCount();
   return(
     <div>
-       {count} <button onClick={CountPlus}>+1</button>
+       {count} <button onClick={store.countPlus}>+1</button>
     </div>
   )
 }
 
 const TextBox = () => {
-  const text = GetText();
+  const text = store.getText();
   return(
     <div>
-      <input value={text} onChange={ChangeText} className="full-width" />
+      <input value={text} onChange={store.changeText} className="full-width" />
     </div>
   )
 }
